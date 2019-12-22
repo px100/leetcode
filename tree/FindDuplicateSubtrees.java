@@ -19,7 +19,7 @@ public class FindDuplicateSubtrees {
     return result;
   }
 
-  public int dfs(TreeNode node) {
+  private int dfs(TreeNode node) {
     if (node == null) {
       return 0;
     }
