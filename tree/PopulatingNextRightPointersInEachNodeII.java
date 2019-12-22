@@ -7,7 +7,7 @@ import java.util.Queue;
 
 public class PopulatingNextRightPointersInEachNodeII {
 
-  private class Node {
+  private static class Node {
 
     public int val;
     public Node left;
