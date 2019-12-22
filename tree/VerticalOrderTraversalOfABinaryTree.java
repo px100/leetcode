@@ -36,23 +36,23 @@ public class VerticalOrderTraversalOfABinaryTree {
       Map<Integer, List<Integer>> map1 = new HashMap<>();
       int size = queue.size();
       for (int i = 0; i < size; i++) {
-        TreeNode curnode = queue.poll();
+        TreeNode cur = queue.poll();
         int curidx = pos.poll();
         min = Math.min(min, curidx);
         max = Math.max(max, curidx);
         if (map1.containsKey(curidx)) {
-          map1.get(curidx).add(curnode.val);
+          map1.get(curidx).add(cur.val);
         } else {
           List<Integer> temp = new ArrayList<>();
-          temp.add(curnode.val);
+          temp.add(cur.val);
           map1.put(curidx, temp);
         }
-        if (curnode.left != null) {
-          queue.offer(curnode.left);
+        if (cur.left != null) {
+          queue.offer(cur.left);
           pos.offer(curidx - 1);
         }
-        if (curnode.right != null) {
-          queue.offer(curnode.right);
+        if (cur.right != null) {
+          queue.offer(cur.right);
           pos.offer(curidx + 1);
         }
       }
