@@ -9,9 +9,9 @@ import java.util.Map;
 public class FindDuplicateSubtrees {
 
   private int t = 1;
+  private List<TreeNode> result = new ArrayList<>();
   private Map<String, Integer> trees = new HashMap<>();
   private Map<Integer, Integer> count = new HashMap<>();
-  private List<TreeNode> result = new ArrayList<>();
 
   public List<TreeNode> findDuplicateSubtrees(TreeNode root) {
     dfs(root);
@@ -27,7 +27,7 @@ public class FindDuplicateSubtrees {
     String serial = node.val + "," + dfs(node.left) + "," + dfs(node.right);
 
     int identifier = trees.computeIfAbsent(serial, x -> t++);
-    count.put(identifier, count.getOrDefault(identifier, 0) + 1);
+    count.merge(identifier, 1, Integer::sum);
     if (count.get(identifier) == 2) {
       result.add(node);
     }

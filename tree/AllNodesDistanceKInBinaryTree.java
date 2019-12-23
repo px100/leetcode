@@ -32,7 +32,6 @@ public class AllNodesDistanceKInBinaryTree {
       int size = queue.size();
       for (int i = 0; i < size; i++) {
         TreeNode node = queue.poll();
-
         if (level == K) {
           result.add(node.val);
         }
