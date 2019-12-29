@@ -59,7 +59,7 @@ public class WebCrawlerMultithreaded {
   class Solution {
 
     public List<String> crawl(String startUrl, HtmlParser htmlParser) {
-      String hostname = getHostname(startUrl);
+      String hostname = extractHostname(startUrl);
 
       Set<String> visited = new ConcurrentSkipListSet<>();
       visited.add(startUrl);
@@ -71,7 +71,7 @@ public class WebCrawlerMultithreaded {
       Set<String> visited) {
       try (Stream<String> stream = htmlParser.getUrls(startUrl)
         .parallelStream()
-        .filter(url -> isSameHostname(url, hostname))
+        .filter(url -> matchHostname(url, hostname))
         .filter(visited::add)
         .flatMap(url -> crawl(url, htmlParser, hostname, visited))) {
 
@@ -79,12 +79,12 @@ public class WebCrawlerMultithreaded {
       }
     }
 
-    private String getHostname(String url) {
+    private String extractHostname(String url) {
       int idx = url.indexOf('/', 7);
       return (idx != -1) ? url.substring(0, idx) : url;
     }
 
-    private boolean isSameHostname(String url, String hostname) {
+    private boolean matchHostname(String url, String hostname) {
       return url.startsWith(hostname) && (url.length() == hostname.length()
         || url.charAt(hostname.length()) == '/');
     }
