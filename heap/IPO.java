@@ -8,6 +8,7 @@ import java.util.Set;
 
 public class IPO {
 
+  // O(N*log(N))
   public int findMaximizedCapital(int k, int W, int[] profits, int[] capital) {
     if (profits == null || profits.length == 0) {
       return 0;
