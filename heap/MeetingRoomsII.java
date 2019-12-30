@@ -48,7 +48,7 @@ public class MeetingRoomsII {
 
   // Put start time and end time into two arrays and sort them
   // Use a pointer to maintain minimum value of next end time as a simulation of poll() element in PriorityQueue
-  public int minMeetingRoomsLinear(Interval[] intervals) {
+  public int minMeetingRooms2(Interval[] intervals) {
     int[] start = new int[intervals.length];
     int[] end = new int[intervals.length];
 
