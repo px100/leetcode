@@ -15,10 +15,11 @@ public class ShortestPathToGetAllKeys {
     int k = 0;
     for (int i = 0; i < m; i++) {
       for (int j = 0; j < n; j++) {
-        if (grid[i].charAt(j) == '@') {
+        char chr = grid[i].charAt(j);
+        if (chr == '@') {
           queue.offer(new int[]{i, j, 0});
-        } else if (grid[i].charAt(j) >= 'a' && grid[i].charAt(j) <= 'f') {
-          k = Math.max(k, grid[i].charAt(j) - 'a' + 1);
+        } else if (Character.isLowerCase(chr)) {
+          k = Math.max(k, chr - 'a' + 1);
         }
       }
     }
@@ -39,11 +40,11 @@ public class ShortestPathToGetAllKeys {
           if (x < 0 || x >= m || y < 0 || y >= n || grid[x].charAt(y) == '#') {
             continue;
           }
-          char c = grid[x].charAt(y);
-          if (Character.isLowerCase(c)) {
-            mask |= 1 << (c - 'a');
+          char chr = grid[x].charAt(y);
+          if (Character.isLowerCase(chr)) {
+            mask |= 1 << (chr - 'a');
           }
-          if (Character.isUpperCase(c) && (mask & (1 << (c - 'A'))) == 0) {
+          if (Character.isUpperCase(chr) && (mask & (1 << (chr - 'A'))) == 0) {
             continue;
           }
           if (!visited[x][y][mask]) {
