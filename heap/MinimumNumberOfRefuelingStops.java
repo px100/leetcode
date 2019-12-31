@@ -6,7 +6,7 @@ import java.util.PriorityQueue;
 
 public class MinimumNumberOfRefuelingStops {
 
-  // final stop is the total amount of fuel ever added to the tank
+  // final distance is the total amount of fuel ever added to the tank
   public int minRefuelStops(int target, int startFuel, int[][] stations) {
     int i = 0;
     int refuel = 0;
@@ -14,8 +14,8 @@ public class MinimumNumberOfRefuelingStops {
 
     PriorityQueue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder()); // maxHeap
 
-    for (int maxDistance = startFuel; maxDistance < target; maxDistance += pq.poll()) {
-      while (i < stationsSize && stations[i][0] <= maxDistance) {
+    for (int distance = startFuel; distance < target; distance += pq.poll()) {
+      while (i < stationsSize && stations[i][0] <= distance) {
         pq.offer(stations[i++][1]);
       }
       if (pq.isEmpty()) {
@@ -34,7 +34,7 @@ public class MinimumNumberOfRefuelingStops {
     for (int i = 0; i < size; i++) {
       for (int j = i; j >= 0; j--) {
         if (dp[j] >= stations[i][0]) {
-          dp[j + 1] = Math.max(dp[j + 1], dp[j] + (long) stations[i][1]);
+          dp[j + 1] = Math.max(dp[j + 1], dp[j] + stations[i][1]);
         }
       }
     }
