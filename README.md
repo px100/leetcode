@@ -8,3 +8,4 @@ Clean **leetcode.com tagwise** solutions in java (including premium problems)
 |2|LinkedList|37/37|
 |3|Concurrency|9/9|
 |4|TopologicalSort|6/6|
+|5|Heap|29/34|
