@@ -1,6 +1,6 @@
 # leetcode-tags
 
-Clean **leetcode.com tagwise** solutions in java (including premium problems)
+Clean **leetcode.com** solutions in java (including premium problems)
 
 |No.|Tag|Solved|
 |:---|:---|:---|
