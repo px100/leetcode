@@ -19,16 +19,16 @@ public class ArrayPartitionI {
   // O(N)
   public int arrayPairSum2(int[] nums) {
     int[] arr = new int[20000 + 1];
-    int lim = 10000;
+    int limit = 10000;
     for (int num : nums) {
-      arr[num + lim]++;
+      arr[num + limit]++;
     }
 
     int d = 0;
     int sum = 0;
     for (int i = -10000; i <= 10000; i++) {
-      sum += ((arr[i + lim] + 1 - d) >> 1) * i;
-      d = (arr[i + lim] + 2 - d) & 1;
+      sum += ((arr[i + limit] + 1 - d) >> 1) * i;
+      d = (arr[i + limit] + 2 - d) & 1;
     }
 
     return sum;
