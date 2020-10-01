@@ -10,3 +10,4 @@
 |4|TopologicalSort|6/6|
 |5|Heap|34/34|
 |6|Recursion|15/15|
+|7|OrderedMap|10/10|
