@@ -82,9 +82,7 @@ public class AllPathsFromSourceToTarget {
 
     List<List<Integer>> result = new ArrayList<>();
     if (node == graph.length - 1) {
-      List<Integer> path = new ArrayList<>();
-      path.add(node);
-      result.add(path);
+      result.add(Collections.singletonList(node));
     } else {
       Arrays.stream(graph[node])
           .mapToObj(nextNode -> dfs(graph, nextNode, map))
