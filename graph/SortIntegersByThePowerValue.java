@@ -13,6 +13,7 @@ public class SortIntegersByThePowerValue {
 
   public int getKth(int lo, int hi, int k) {
     map.put(1, 0);
+
     return IntStream.rangeClosed(lo, hi)
         .mapToObj(i -> new int[]{i, collatz(i)})
         .sorted(Comparator.comparingInt(a -> a[1]))
