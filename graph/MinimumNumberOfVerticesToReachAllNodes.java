@@ -6,16 +6,18 @@ import java.util.List;
 
 public class MinimumNumberOfVerticesToReachAllNodes {
 
+  // TC - O(E), E = edges.length
+  // SC- O(n)
   public List<Integer> findSmallestSetOfVertices(int n, List<List<Integer>> edges) {
     List<Integer> result = new ArrayList<>();
 
-    boolean[] visited = new boolean[n];
+    boolean[] inDegree = new boolean[n];
     for (List<Integer> list : edges) {
-      visited[list.get(1)] = true;
+      inDegree[list.get(1)] = true;
     }
 
     for (int i = 0; i < n; i++) {
-      if (!visited[i]) {
+      if (!inDegree[i]) {
         result.add(i);
       }
     }

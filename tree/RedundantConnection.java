@@ -5,32 +5,43 @@
 public class RedundantConnection {
 
   public int[] findRedundantConnection(int[][] edges) {
-    int N = edges.length;
-    int[] p = new int[N + 1];
+    int n = edges.length;
+    UnionFind uf = new UnionFind(n);
 
-    for (int[] e : edges) {
-      int x = find(p, e[0]);
-      int y = find(p, e[1]);
-      if (x == y) {
-        return e;
+    for (int[] edge : edges) {
+      int u = edge[0];
+      int v = edge[1];
+      if (uf.find(u) == uf.find(v)) {
+        return edge;
+      } else {
+        uf.union(u, v);
       }
-      // Union.
-      // connect the 2 ends of the edge into one set, which share the same root parent
-      p[y] = x;
     }
-
-    return new int[2];
+    return null;
   }
 
-  // Path compression
-  // Form a flat tree and reduce complexity to O(N) for finding root of N nodes
-  private int find(int[] p, int t) {
-    if (p[t] == 0) {
-      return t;
+  private static class UnionFind {
+
+    int[] parent;
+
+    public UnionFind(int n) {
+      parent = new int[n + 1];
+      for (int i = 1; i <= n; i++) {
+        parent[i] = i;
+      }
     }
 
-    p[t] = find(p, p[t]); // Update t's parent to root parent while trying to find the root parent
+    public void union(int a, int b) {
+      int pa = find(a);
+      int pb = find(b);
+      parent[pa] = pb;
+    }
 
-    return p[t];
+    public int find(int x) {
+      while (parent[x] != x) {
+        x = parent[x];
+      }
+      return x;
+    }
   }
 }
