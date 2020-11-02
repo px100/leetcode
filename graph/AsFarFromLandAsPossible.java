@@ -37,11 +37,11 @@ public class AsFarFromLandAsPossible {
         int[] cur = queue.poll();
         distance = cur[2];
         for (int[] dir : dirs) {
-          int newX = cur[0] + dir[0];
-          int newY = cur[1] + dir[1];
-          if (newX >= 0 && newX < n && newY >= 0 && newY < m && grid[newX][newY] == 0) {
-            grid[newX][newY] = 1 + distance;
-            queue.offer(new int[]{newX, newY, 1 + distance});
+          int nextX = cur[0] + dir[0];
+          int nextY = cur[1] + dir[1];
+          if (nextX >= 0 && nextX < n && nextY >= 0 && nextY < m && grid[nextX][nextY] == 0) {
+            grid[nextX][nextY] = 1 + distance;
+            queue.offer(new int[]{nextX, nextY, 1 + distance});
           }
         }
       }
