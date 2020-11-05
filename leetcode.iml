@@ -16,6 +16,7 @@
       <sourceFolder url="file://$MODULE_DIR$/bit-manipulation" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/topological-sort" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/minimax" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/design" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
