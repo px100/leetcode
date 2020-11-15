@@ -53,7 +53,7 @@ public class PopulatingNextRightPointersInEachNode {
 
   public Node connect2(Node root) {
     if (root == null) {
-      return root;
+      return null;
     }
 
     Node leftmost = root;
@@ -74,7 +74,7 @@ public class PopulatingNextRightPointersInEachNode {
 
   private Node connectRec(Node root) {
     if (root == null) {
-      return root;
+      return null;
     }
 
     connectRecHelper(root.left, root.right);
