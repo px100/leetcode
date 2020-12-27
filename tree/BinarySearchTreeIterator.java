@@ -1,39 +1,35 @@
-import java.util.ArrayDeque;
-import java.util.Deque;
 
+// LC-173
 // https://leetcode.com/problems/binary-search-tree-iterator/
+
+import java.util.Stack;
 
 public class BinarySearchTreeIterator {
 
   private class BSTIterator {
 
-    Deque<TreeNode> stack = new ArrayDeque<>();
+    Stack<TreeNode> stack;
+
+    private void leftmostInorder(TreeNode node) {
+      while (node != null) {
+        stack.push(node);
+        node = node.left;
+      }
+    }
 
     public BSTIterator(TreeNode root) {
-      TreeNode cur = root;
-      while (cur != null) {
-        stack.addFirst(cur);
-        cur = cur.left;
-      }
+      stack = new Stack<>();
+      leftmostInorder(root);
     }
 
-    /**
-     * @return the next smallest number
-     */
     public int next() {
-      TreeNode node = stack.removeFirst();
-      TreeNode cur = node.right;
-      while (cur != null) {
-        stack.addFirst(cur);
-        cur = cur.left;
+      TreeNode topmostNode = stack.pop();
+      if (topmostNode.right != null) {
+        leftmostInorder(topmostNode.right);
       }
-
-      return node.val;
+      return topmostNode.val;
     }
 
-    /**
-     * @return whether we have a next smallest number
-     */
     public boolean hasNext() {
       return !stack.isEmpty();
     }
