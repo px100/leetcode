@@ -29,7 +29,35 @@ public class PopulatingNextRightPointersInEachNodeII {
     }
   }
 
+  // SC: O(1)
   public Node connect(Node root) {
+    if (root == null) {
+      return null;
+    }
+
+    Node head = new Node(0);
+    Node tail = head;
+    Node temp = root;
+    while (root != null) {
+      if (root.left != null) {
+        tail.next = root.left;
+        tail = tail.next;
+      }
+      if (root.right != null) {
+        tail.next = root.right;
+        tail = tail.next;
+      }
+      root = root.next;
+      if (root == null) {
+        tail = head;
+        root = head.next;
+        head.next = null;
+      }
+    }
+    return temp;
+  }
+
+  public Node connect2(Node root) {
     if (root == null) {
       return null;
     }
