@@ -17,6 +17,9 @@
       <sourceFolder url="file://$MODULE_DIR$/topological-sort" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/minimax" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/design" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/trie" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/binary-search" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/math" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

@@ -3,9 +3,23 @@
 
 public class InorderSuccessorInBST {
 
+  public TreeNode inorderSuccessorA(TreeNode root, TreeNode p) {
+    TreeNode successor = null;
+    while (root != null) {
+      if (p.val < root.val) {
+        successor = root;
+        root = root.left;
+      } else {
+        root = root.right;
+      }
+    }
+
+    return successor;
+  }
+
   // O(log(n)) - Balanced BST
   // O(n) - Worst case
-  public TreeNode inorderSuccessor(TreeNode root, TreeNode p) {
+  public TreeNode inorderSuccessorB(TreeNode root, TreeNode p) {
     if (root == null) {
       return null;
     }
