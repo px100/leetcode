@@ -4,11 +4,12 @@
 
 public class SmallestSubtreeWithAllTheDeepestNodes {
 
-  private TreeNode res = null;
-  private int max = Integer.MIN_VALUE;
+  private TreeNode res;
+  private int max;
 
   public TreeNode subtreeWithAllDeepest(TreeNode root) {
     res = root;
+    max = Integer.MIN_VALUE;
     dfs(root, 1);
 
     return res;

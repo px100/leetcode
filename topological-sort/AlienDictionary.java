@@ -54,7 +54,10 @@ public class AlienDictionary {
     StringBuilder result = new StringBuilder();
 
     Queue<Character> queue = new LinkedList<>();
-    inDegrees.keySet().stream().filter(c -> inDegrees.get(c) == 0).forEach(queue::offer);
+    inDegrees.keySet()
+        .stream()
+        .filter(c -> inDegrees.get(c) == 0)
+        .forEach(queue::offer);
 
     while (!queue.isEmpty()) {
       Character current = queue.poll();
