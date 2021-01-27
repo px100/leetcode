@@ -13,13 +13,13 @@ import java.util.Set;
 public class WordLadderII {
 
   public List<List<String>> findLadders(String beginWord, String endWord, List<String> wordList) {
-    List<List<String>> result = new ArrayList<>();
     Set<String> words = new HashSet<>(wordList);
     if (!words.contains(endWord)) {
-      return result;
+      return List.of();
     }
 
     Set<String> visited = new HashSet<>();
+    List<List<String>> result = new ArrayList<>();
     PriorityQueue<List<String>> pq = new PriorityQueue<>(Comparator.comparingInt(List::size));
 
     List<String> list = new ArrayList<>();
@@ -35,11 +35,11 @@ public class WordLadderII {
         if (level > min) {
           return result;
         }
-        if (l1.get(l1.size() - 1).equals(endWord)) {
+        String last = l1.get(l1.size() - 1);
+        if (last.equals(endWord)) {
           result.add(l1);
           min = Math.min(min, level);
         } else {
-          String last = l1.get(l1.size() - 1);
           visited.add(last);
           for (int i = 0; i < last.length(); i++) {
             char[] chr = last.toCharArray();
@@ -83,7 +83,7 @@ public class WordLadderII {
   }
 
   private boolean helper(Set<String> dict, Set<String> beginSet, Set<String> endSet,
-    Map<String, List<String>> map, boolean flip) {
+      Map<String, List<String>> map, boolean flip) {
     if (beginSet.isEmpty()) {
       return false;
     }
@@ -121,7 +121,7 @@ public class WordLadderII {
   }
 
   private void getAllPath(String beginWord, String endWord, Map<String, List<String>> map,
-    List<String> path, List<List<String>> result) {
+      List<String> path, List<List<String>> result) {
     if (beginWord.equals(endWord)) {
       result.add(new ArrayList<>(path));
       return;
