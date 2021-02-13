@@ -47,45 +47,48 @@ public class CopyListWithRandomPointer {
   // original_next = original_node.next;
   // original_node.next = cloned_node;
   // cloned_node.next = original_next
-  public Node copyRandomListFaster(Node head) {
+  public Node copyRandomList2(Node head) {
     if (head == null) {
       return null;
     }
 
-    Node fake = new Node(-1);
-    fake.next = head;
+    createNewNodes(head);
+    copyRandom(head);
+    Node newHead = head.next;
+    split(head);
+    return newHead;
+  }
 
-    // clone main node, insert new nodes as next's for original nodes
-    Node n = head;
-    while (n != null) {
-      Node newNode = new Node(n.val);
-      Node nNext = n.next;
-      n.next = newNode;
-      newNode.next = nNext;
-      n = nNext;
+  // clone main node, insert new nodes as next's for original nodes
+  private void createNewNodes(Node head) {
+    while (head != null) {
+      Node copy = new Node(head.val);
+      copy.next = head.next;
+      head.next = copy;
+      head = copy.next;
     }
+  }
 
-    // connect random pointers of clones to clones of randoms
-    n = fake.next;
-    while (n != null) {
-      if (n.random != null) {
-        n.next.random = n.random.next;
+  // connect random pointers of clones to clones of randoms
+  private void copyRandom(Node head) {
+    while (head != null) {
+      if (head.random != null) {
+        head.next.random = head.random.next;
       }
-      n = n.next.next;
+      head = head.next.next;
     }
+  }
 
-    // unwire original and new nodes, prepare the new head node for result
-    n = fake.next;
-    Node res = n.next;
-    while (n != null) {
-      Node nn = n.next;
-      n.next = nn.next;
-      if (n.next != null) {
-        nn.next = nn.next.next;
+  // unwire original and new nodes, prepare the new head node for result
+  private void split(Node head) {
+    while (head != null) {
+      Node next = head.next.next;
+      Node newHead = head.next;
+      head.next = next;
+      head = head.next;
+      if (next != null) {
+        newHead.next = next.next;
       }
-      n = n.next;
     }
-
-    return res;
   }
 }
