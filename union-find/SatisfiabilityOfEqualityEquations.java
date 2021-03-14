@@ -47,7 +47,6 @@
 public class SatisfiabilityOfEqualityEquations {
 
   public boolean equationsPossible(String[] equations) {
-    int n = equations.length;
     UnionFind uf = new UnionFind(26);
     for (String s : equations) {
       if (s.charAt(1) == '=') {
