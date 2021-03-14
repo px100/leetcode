@@ -20,6 +20,7 @@
       <sourceFolder url="file://$MODULE_DIR$/trie" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/binary-search" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/math" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/dynamic-programming/linear-dp" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

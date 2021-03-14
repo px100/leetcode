@@ -12,14 +12,14 @@ import java.util.Set;
 
 public class AllNodesDistanceKInBinaryTree {
 
-  public List<Integer> distanceK(TreeNode root, TreeNode target, int K) {
+  public List<Integer> distanceK(TreeNode tree, TreeNode target, int k) {
     List<Integer> result = new ArrayList<>();
-    if (root == null) {
+    if (tree == null) {
       return result;
     }
 
     Map<TreeNode, TreeNode> map = new HashMap<>();
-    findParents(root, null, map);
+    findParents(tree, null, map);
 
     Set<TreeNode> set = new HashSet<>();
     Queue<TreeNode> queue = new LinkedList<>();
@@ -32,7 +32,7 @@ public class AllNodesDistanceKInBinaryTree {
       int size = queue.size();
       for (int i = 0; i < size; i++) {
         TreeNode node = queue.poll();
-        if (level == K) {
+        if (level == k) {
           result.add(node.val);
         }
         if (node.left != null) {
