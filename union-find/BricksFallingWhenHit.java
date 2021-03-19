@@ -81,9 +81,8 @@ public class BricksFallingWhenHit {
       }
     }
 
-    // Run Depth First Search from top row in order to know
-    // which bricks are left after every erase operation.
-    // We should mark these bricks as visited.
+    // run dfs from top row in order to know which bricks are left after every erase operation.
+    // mark these bricks as visited.
     for (int j = 0; j < grid[0].length; j++) {
       if (grid[0][j] == BRICK) {
         dfs(grid, 0, j);
