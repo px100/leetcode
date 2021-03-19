@@ -62,8 +62,7 @@ public class SmallestStringWithSwaps {
     }
     Map<Integer, PriorityQueue<Character>> map = new HashMap<>();
     for (int i = 0; i < roots.length; i++) {
-      map.putIfAbsent(roots[i], new PriorityQueue<>());
-      map.get(roots[i]).offer(s.charAt(i));
+      map.computeIfAbsent(roots[i], pq -> new PriorityQueue<>()).offer(s.charAt(i));
     }
     StringBuilder sb = new StringBuilder();
     for (int root : roots) {
