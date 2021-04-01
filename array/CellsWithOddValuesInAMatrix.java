@@ -15,8 +15,8 @@ public class CellsWithOddValuesInAMatrix {
       rows[i[0]] ^= true;
       cols[i[1]] ^= true;
 
-      nr += rows[i[0]] ? 1 : ~0;
-      nc += cols[i[1]] ? 1 : ~0;
+      nr += rows[i[0]] ? 1 : -1;
+      nc += cols[i[1]] ? 1 : -1;
     }
 
     return nr * (m - nc) + nc * (n - nr);
