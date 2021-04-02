@@ -22,6 +22,7 @@
       <sourceFolder url="file://$MODULE_DIR$/math" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/dynamic-programming/linear-dp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/union-find" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/dynamic-programming" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
