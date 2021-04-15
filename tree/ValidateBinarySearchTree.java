@@ -27,7 +27,7 @@ public class ValidateBinarySearchTree {
 
   public boolean isValidBSTInorder(TreeNode root) {
     Stack<TreeNode> stack = new Stack<>();
-    double inorder = -Double.MAX_VALUE;
+    double inorder = Double.MIN_VALUE;
 
     while (!stack.isEmpty() || root != null) {
       while (root != null) {
