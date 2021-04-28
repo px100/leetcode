@@ -50,7 +50,8 @@ import java.util.Stack;
 
 public class ImplementQueueUsingStacks {
 
-  // Two Stacks: Time -> O(1) Push, O(n) Pop worst case but O(1) amortized
+  // Two Stacks:
+  // TC: O(1) Push, O(n) Pop worst case but O(1) amortized
   class MyQueue {
 
     /**
@@ -102,15 +103,16 @@ public class ImplementQueueUsingStacks {
 
   ///////////////////////////////////////////////////////////////////////////
 
-  // Two Stacks: Time ->O(n) Push, O(1) Pop
+  // Two Stacks:
+  // TC: O(n) Push, O(1) Pop
   class MyQueue2 {
 
     /**
      * Initialize your data structure here.
      */
 
-    Stack<Integer> stack1;
-    Stack<Integer> stack2;
+    private final Stack<Integer> stack1;
+    private final Stack<Integer> stack2;
 
     /**
      * Initialize your data structure here.
@@ -127,7 +129,6 @@ public class ImplementQueueUsingStacks {
       if (stack1.isEmpty()) {
         stack1.push(x);
       } else {
-
         // move elements to stack 2
         while (!stack1.isEmpty()) {
           stack2.push(stack1.pop());
