@@ -5,6 +5,41 @@ import java.util.Arrays;
 
 public class PartitionToKEqualSumSubsets {
 
+  // TC: O(n*2^n)
+  public boolean canPartitionKSubsetsDpBitmasking2(int[] nums, int k) {
+    if (nums == null || nums.length == 0) {
+      return false;
+    }
+
+    int n = nums.length;
+    int[] dp = new int[(1 << n) + 2];
+    Arrays.fill(dp, -1);
+    dp[0] = 0;
+
+    int sum = 0;
+    for (int num : nums) {
+      sum += num;
+    }
+    if (sum % k != 0) {
+      return false;
+    }
+
+    int target = sum / k;
+
+    for (int mask = 0; mask < (1 << n); mask++) {
+      // ignore illegal state
+      if (dp[mask] == -1) {
+        continue;
+      }
+      for (int i = 0; i < n; i++) {
+        if ((mask & (1 << i)) == 0 && dp[mask] + nums[i] <= target) {
+          dp[mask | (1 << i)] = (dp[mask] + nums[i]) % target;
+        }
+      }
+    }
+    return dp[(1 << n) - 1] == 0;
+  }
+
   public boolean canPartitionKSubsetsDpBitmasking(int[] nums, int k) {
     if (nums == null || nums.length == 0) {
       return false;
