@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -84,14 +83,14 @@ public class AllPathsFromSourceToTarget {
     if (node == graph.length - 1) {
       result.add(Collections.singletonList(node));
     } else {
-      Arrays.stream(graph[node])
-          .mapToObj(nextNode -> dfs(graph, nextNode, map))
-          .flatMap(List::stream)
-          .map(LinkedList::new)
-          .forEach(newPath -> {
-            newPath.addFirst(node);
-            result.add(newPath);
-          });
+      for (int nextNode : graph[node]) {
+        List<List<Integer>> dfs = dfs(graph, nextNode, map);
+        for (List<Integer> list : dfs) {
+          LinkedList<Integer> newPath = new LinkedList<>(list);
+          newPath.addFirst(node);
+          result.add(newPath);
+        }
+      }
     }
     map.put(node, result);
 
