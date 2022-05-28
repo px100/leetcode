@@ -1,6 +1,7 @@
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 // LC-1615
@@ -34,24 +35,22 @@ public class MaximalNetworkRank {
   // Graph Representation
   public int maximalNetworkRank5(int n, int[][] roads) {
     Map<Integer, Set<Integer>> graph = new HashMap<>();
-    for (int i = 0; i < n; i++) {
-      graph.put(i, new HashSet<>());
-    }
     for (int[] road : roads) {
-      int from = road[0];
-      int to = road[1];
-      graph.get(from).add(to);
-      graph.get(to).add(from);
+      graph.computeIfAbsent(road[0], k -> new HashSet<>()).add(road[1]);
+      graph.computeIfAbsent(road[1], k -> new HashSet<>()).add(road[0]);
     }
 
     int maxRank = 0;
     for (int i = 0; i < n; i++) {
       for (int j = i + 1; j < n; j++) {
-        int result = graph.get(i).size() + graph.get(j).size();
-        if (graph.get(i).contains(j)) {
-          result--;
+        Set<Integer> connectedI = graph.get(i);
+        Set<Integer> connectedJ = graph.get(j);
+        if (Objects.isNull(connectedI) || Objects.isNull(connectedJ)) {
+          continue;
         }
-        maxRank = Math.max(maxRank, result);
+        int countI = connectedI.size();
+        int countJ = connectedJ.size();
+        maxRank = Math.max(maxRank, countI + countJ - (connectedI.contains(j) ? 1 : 0));
       }
     }
 

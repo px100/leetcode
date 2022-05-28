@@ -43,11 +43,59 @@
 //  0 <= xi, yi <= 104
 //  No two stones are at the same coordinate point.
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
+import java.util.Queue;
+import java.util.Set;
 
 public class MostStonesRemovedWithSameRowOrColumn {
 
+  // BFS
+  // TC: O(V+E)
+  // SC: O(V+E)
+  public int removeStonesBFS(int[][] stones) {
+    Map<Integer, List<int[]>> mapX = new HashMap<>();
+    Map<Integer, List<int[]>> mapY = new HashMap<>();
+    for (int[] stone : stones) {
+      mapX.computeIfAbsent(stone[0], k -> new ArrayList<>()).add(stone);
+      mapY.computeIfAbsent(stone[1], k -> new ArrayList<>()).add(stone);
+    }
+
+    int count = 0;
+    Set<int[]> visited = new HashSet<>();
+    for (int[] stone : stones) {
+      if (visited.contains(stone)) {
+        continue;
+      }
+      Queue<int[]> queue = new LinkedList<>();
+      queue.offer(stone);
+      while (!queue.isEmpty()) {
+        int[] cur = queue.poll();
+        visited.add(cur);
+        count++;
+        for (int[] v : mapX.get(cur[0])) {
+          if (!visited.contains(v)) {
+            queue.offer(v);
+            visited.add(v);
+          }
+        }
+        for (int[] v : mapY.get(cur[1])) {
+          if (!visited.contains(v)) {
+            queue.offer(v);
+            visited.add(v);
+          }
+        }
+      }
+      count--;
+    }
+    return count;
+  }
+
+  // DSU
   public int removeStones(int[][] stones) {
     int n = Integer.MIN_VALUE;
     for (int[] stone : stones) {
