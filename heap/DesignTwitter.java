@@ -17,26 +17,21 @@ public class DesignTwitter {
       return t2.timestamp - t1.timestamp;
     }
 
-    private static class Tweet {
+    private record Tweet(int tweetId, int timestamp) {
 
-      int tweetId;
-      int timestamp;
-
-      public Tweet(int tId, int time) {
-        tweetId = tId;
-        timestamp = time;
-      }
     }
 
-    private Map<Integer, Set<Integer>> followMap = new HashMap<>();
-    private Map<Integer, List<Tweet>> tweetMap = new HashMap<>();
-    private static int timestamp = 0;
+    private Map<Integer, Set<Integer>> followMap;
+    private Map<Integer, List<Tweet>> tweetMap;
+    private int timestamp;
 
     /**
      * Initialize your data structure here.
      */
     public Twitter() {
-
+      this.followMap = new HashMap<>();
+      this.tweetMap = new HashMap<>();
+      this.timestamp = 0;
     }
 
     /**
@@ -44,29 +39,24 @@ public class DesignTwitter {
      */
     public void postTweet(int userId, int tweetId) {
       Tweet newTweet = new Tweet(tweetId, timestamp++);
-      if (!tweetMap.containsKey(userId)) {
-        tweetMap.put(userId, new ArrayList<>());
-      }
-      tweetMap.get(userId).add(newTweet);
+      tweetMap.computeIfAbsent(userId, k -> new ArrayList<>()).add(newTweet);
     }
 
     /**
-     * Retrieve the 10 most recent tweet ids in the user's news feed. Each item in the news feed
-     * must be posted by users who the user followed or by the user herself. Tweets must be ordered
-     * from most recent to least recent.
+     * Retrieve the 10 most recent tweet ids in the user's news feed. Each item in the news feed must be posted by users
+     * who the user followed or by the user herself. Tweets must be ordered from most recent to least recent.
      */
     public List<Integer> getNewsFeed(int userId) {
       List<Integer> result = new ArrayList<>();
-      PriorityQueue<Tweet> pq = new PriorityQueue<>(Twitter::compare);
 
       follow(userId, userId);
       Set<Integer> followSet = followMap.get(userId);
       followSet.addAll(followMap.get(userId));
 
-      followSet.stream()
-        .filter(followee -> tweetMap.containsKey(followee))
-        .map(followee -> tweetMap.get(followee))
-        .forEach(pq::addAll);
+      PriorityQueue<Tweet> pq = new PriorityQueue<>(Twitter::compare);
+      for (Integer followee : followSet) {
+        pq.addAll(tweetMap.getOrDefault(followee, List.of()));
+      }
 
       int size = pq.size();
       while (result.size() < 10 && size > 0) {
@@ -82,10 +72,7 @@ public class DesignTwitter {
      * Follower follows a followee. If the operation is invalid, it should be a no-op.
      */
     public void follow(int followerId, int followeeId) {
-      if (!followMap.containsKey(followerId)) {
-        followMap.put(followerId, new HashSet<>());
-      }
-      followMap.get(followerId).add(followeeId);
+      followMap.computeIfAbsent(followerId, k -> new HashSet<>()).add(followeeId);
     }
 
     /**
