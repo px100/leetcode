@@ -23,6 +23,7 @@
       <sourceFolder url="file://$MODULE_DIR$/problems/recursion" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/problems/sliding-window" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/problems/topological-sort" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/contests/weekly-421" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/problems/tree" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/problems/trie" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/problems/union-find" isTestSource="false" />
